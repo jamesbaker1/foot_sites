@@ -1,0 +1,33 @@
+
+<!-- saved from url=(0014)about:internet -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<script>
+      var hashArr = window.location.hash.replace('#','').split('|');
+      var juNum = hashArr[0];
+      var _ju_dt = hashArr[1];
+
+      savedInfo = readStore();
+      if (_ju_dt!='' && _ju_dt.indexOf('-')!=-1) {
+        //console.log('writing to storage')
+        writeStore(_ju_dt);
+      } else {
+        parent.postMessage(savedInfo,"*");
+      }
+
+      function getStoreKey() {
+        return juNum;
+      }
+      function readStore() {
+        var key = getStoreKey();
+        var store = window.sessionStorage.getItem(key);
+        return store || '';
+      }
+      function writeStore(store) {
+        var key = getStoreKey();
+        var sData = store;
+        window.sessionStorage.setItem(key, sData);
+      }
+    </script>
+</head>
+<body>
+</body></html>
